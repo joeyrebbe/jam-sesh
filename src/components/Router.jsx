@@ -97,13 +97,13 @@ class Router extends Component {
               )}
             />
             <Route
-              path="/discover"
+              path="/feed"
               component={(props) => (
                 <Layout
                   currentUser={this.state.currentUser}
                   authenticated={this.state.authenticated}
                 >
-                  <Discover {...props} />
+                  <Feed {...props} />
                 </Layout>
               )}
             />

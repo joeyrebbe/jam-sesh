@@ -18,9 +18,7 @@ app.use(require('./config/auth'));
 
 // api routes 
 
-app.use('/api', require('./routes/api/comments'))
-app.use('/api/users', require('./routes/api/users'))
-app.use('/api/posts', require('./routes/api/posts'))
+app.use('/api', approuter)
 
 // catch-all route
 

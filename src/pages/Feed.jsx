@@ -3,7 +3,7 @@ import PageHeader from '../components/Header'
 import AddPost from '../components/AddPostForm'
 import PostCard from '../components/PostCard'
 import * as commentsAPI from '../utils/commentsService'
-import * as postsAPI from '../utils/post-api'
+import * as postsAPI from '../utils/postService'
 
 export default function Feed(post, isProfile, user, addComment, deleteComment) {
     

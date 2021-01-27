@@ -1,56 +1,39 @@
-import tokenService from './tokenService'
+import ApiClient from './apiService'
 
-const BASE_URL = '/api/users/'
+export const __GetProfile = async (userId) => {
+  try {
+    const res = await ApiClient.get(`/users/${userId}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
 
-function signup(user) {
-    return fetch(BASE_URL + 'signup', {
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify(user)
-    })
-    .then(res => {
-      if (res.ok) return res.json();
-      throw new Error('Email already taken!');
-    })
-    .then(({token}) => tokenService.setToken(token));
+export const __RegisterUser = async (formData) => {
+  try {
+    const res = await ApiClient.post('/users/register', formData)
+    return res.data
+  } catch (error) {
+    throw error
   }
-  
-  function getUser() {
-    return tokenService.getUserFromToken();
-  }
-  
-  function logout() {
-    tokenService.removeToken();
-  }
-  
-  function login(creds) {
-    return fetch(BASE_URL + 'login', {
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify(creds)
-    })
-    .then(res => {
-      if (res.ok) return res.json();
-      throw new Error('Bad Credentials!');
-    })
-    .then(({token}) => tokenService.setToken(token));
-  }
+}
 
-  function getProfile(username) {
-      return fetch(BASE_URL + username, {
-          headers: {
-              'Authorization': 'Bearer ' + tokenService.getToken()
-          }
-      }).then(res => {
-          if(res.ok) return res.json()
-          throw new Error('Let me see those credentials again')
-      })
+export const __CheckSession = async () => {
+  try {
+    const res = await ApiClient.get('/users/refresh/session')
+    console.log(res.data)
+    return res.data
+  } catch (error) {
+    throw error
   }
-  
-  export default {
-    signup, 
-    getUser,
-    logout,
-    login, 
-    getProfile
-  };
+}
+
+export const __LoginUser = async (userData) => {
+  try {
+    const res = await ApiClient.post('/users/login', userData)
+    localStorage.setItem('token', res.data.token)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
