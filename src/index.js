@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css'
 import './index.css';
 import App from './pages/App/App';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,4 +11,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.unregister()

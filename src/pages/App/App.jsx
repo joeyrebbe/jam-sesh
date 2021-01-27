@@ -5,6 +5,7 @@ import SignupPage from '../SignupPage/SignupPage'
 import LoginPage from '../LoginPage/LoginPage'
 import userService from '../../utils/userService'
 import Feed from '../Feed/Feed'
+import ProfilePage from '../ProfilePage/ProfilePage'
 
 function App() {
 

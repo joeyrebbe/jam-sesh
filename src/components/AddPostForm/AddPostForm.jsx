@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
-export default function AddPostForm() {
+export default function AddPostForm(props) {
 
     const [selectedFile, setSelectedFile] = useState('')
     const [state, setState] = useState({

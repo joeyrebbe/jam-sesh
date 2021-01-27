@@ -19,7 +19,7 @@ function PostCard({post, isProfile, addComment, removeComment, user}) {
                 </Card.Description>
             </Card.Content>
             <Card.Content textAlign="center">
-                <Icon name={'comment'} size="small" color={black} onClick={clickHandler} />
+                <Icon name={'comment'} size="small" color="black" onClick={clickHandler} />
                 {post.comments.length} Comments
             </Card.Content>
         </Card>

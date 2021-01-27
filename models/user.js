@@ -15,10 +15,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }, 
-    photoUrl: String,
-    bio: String
-    },
-
     {   
     timestamps: true
     })
@@ -58,4 +54,4 @@ userSchema.pre('save', function(next) {
   };
 
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('users', userSchema)
