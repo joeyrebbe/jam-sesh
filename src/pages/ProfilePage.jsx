@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import {Grid} from 'semantic-ui-react'
-import ProfileBio from '../../components/ProfileBio'
+import ProfileBio from '../components/ProfileBio'
 import ProfilePostDisplay from '../../components/ProfilePostDisplay/ProfilePostDisplay'
-import PageHeader from '../../components/Header'
-import userService from '../../utils/userService'
+import PageHeader from '../components/Header'
+import userService from '../utils/userService'
 import { useLocation } from 'react-router-dom'
 
 export default function ProfilePage() {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import PageHeader from '../../components/Header'
-import AddPost from '../../components/AddPostForm'
-import PostCard from '../../components/PostCard'
-import * as commentsAPI from '../../utils/commentsService'
-import * as postsAPI from '../../utils/post-api'
+import PageHeader from '../components/Header'
+import AddPost from '../components/AddPostForm'
+import PostCard from '../components/PostCard'
+import * as commentsAPI from '../utils/commentsService'
+import * as postsAPI from '../utils/post-api'
 
 export default function Feed(post, isProfile, user, addComment, deleteComment) {
     
