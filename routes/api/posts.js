@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 const postsCtrl = require('../../controllers/posts')
-const multer = require('multer')
-const upload = multer()
 
-router.post('/', upload.single('photo'), postsCtrl.create)
-router.get('/', postsCtrl.index)
+router.get('/posts', postsCtrl.GetAllPosts)
+router.get('/posts/:post_id', postsCtrl.GetPostById)
+router.post('/posts', postsCtrl.CreatePost)
+router.delete('/posts/:post_id', postsCtrl.DeletePost)
+
 
 module.exports = router
