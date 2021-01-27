@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 import './SignupPage.css'
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
+import ErrorMessage from '../../components/ErrorMessage'
 import userService from '../../utils/userService'
 import { useHistory } from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Segment, Ref } from 'semantic-ui-react'

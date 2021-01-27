@@ -6,7 +6,8 @@ export default function AddPostForm(props) {
 
     const [selectedFile, setSelectedFile] = useState('')
     const [state, setState] = useState({
-        caption: ''
+        caption: '',
+        description: ''
     })
 
     function handleFileInput(e){
@@ -25,8 +26,8 @@ export default function AddPostForm(props) {
     }
 
     const formData = new FormData()
-    formData.append('photo', selectedFile)
     formData.append('caption', state.caption)
+    formData.append('description', state.description)
     props.handleAddPost(formData)
 
     return (
@@ -38,24 +39,25 @@ export default function AddPostForm(props) {
             
               <Form.Input
                   className="form-control"
-                  name="caption"
+                  name="title"
                   value={state.caption}
-                  placeholder="What's on your pups mind?"
+                  placeholder="Title"
                   onChange={handleChange}
                   required
               />   
               <Form.Input
-                className="form-control"
-                type="file"
-                name="photo"
-                placeholder="upload image"
-                onChange={handleFileInput}
-              />   
+                  className="form-control"
+                  name="description"
+                  value={state.description}
+                  placeholder="What kind of jam are you looking for?"
+                  onChange={handleChange}
+                  required
+              /> 
               <Button
                 type="submit"
                 className="btn"
               >
-                ADD PUPPY
+                Submit Your Jam Request
               </Button>
             </Form>
           </Segment>
