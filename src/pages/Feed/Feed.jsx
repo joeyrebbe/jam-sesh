@@ -21,7 +21,7 @@ export default function Feed(post, isProfile, user, addComment, deleteComment) {
             try {
             const data = await commentsAPI.create(postId)
             console.log(data, ' data from addComment')
-            getPosts()
+            // getPosts()
         } 
         catch (err) {
             console.log(err)
@@ -30,7 +30,7 @@ export default function Feed(post, isProfile, user, addComment, deleteComment) {
         async function deleteComment(postId) {
            try {
             const data = await commentsAPI.deleteComment(postId)
-            getPosts()
+            // getPosts()
            }
            catch (err) {
             console.log(err)
@@ -44,9 +44,9 @@ export default function Feed(post, isProfile, user, addComment, deleteComment) {
     return (
         <>
         <PageHeader />
-        <AddPost />
+        <AddPost handleAddPost={handleAddPost} />
         <PostCard />
-        <PostFeed posts={posts} isProfile={false} user={user} addComment={addComment} removeComment={removeComment} />
+        {/* <PostFeed posts={posts} isProfile={false} user={user} addComment={addComment} removeComment={removeComment} /> */}
         </>
     )
 }

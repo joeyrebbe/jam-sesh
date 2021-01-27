@@ -10,7 +10,7 @@ import { Button, Form, Grid, Header, Image, Segment, Ref } from 'semantic-ui-rea
 export default function SignUpPage(props) {
 
     const [invalidForm, setValidForm] = useState(false)
-    const [selectedFiled, setSelectedFile] = useState('')
+    const [selectedFile, setSelectedFile] = useState('')
     const [error, setError]         = useState('')
     const [state, setState] = useState({
         username: '',

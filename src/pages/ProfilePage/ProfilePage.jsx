@@ -34,9 +34,7 @@ export default function ProfilePage() {
 
     async function addComment(postId){
         try {
-          const data = await commentsAPI.create(postId);
-          console.log(data, ' this is from addcomment')
-          getProfile()
+
         } catch(err){
           console.log(err)
         }
@@ -44,8 +42,7 @@ export default function ProfilePage() {
     
       async function removeComment(postId){
         try {
-          const data = await commentsAPI.removeComment(postId);
-          getProfile();
+
         } catch(err){
           console.log(err)
         }
@@ -61,7 +58,6 @@ export default function ProfilePage() {
             <h1>Loading Page ...</h1>
             :
             <Grid>
-                <PostFeed isProfile={true} posts={posts} user={user} addComment={addComment} removeComment={removeComment}/>
                 <Grid.Row>
                     <Grid.Column>
                         <PageHeader />
