@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import CreatePost from '../pages/CreatePost'
 import Feed from '../pages/Feed'
-import Home from '../pages/Home'
 import LandingPage from '../pages/LandingPage'
 import Profile from '../pages/Profile'
-import SignIn from '../pages/SignIn'
+import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import UpdatePost from '../pages/UpdatePost'
 import ViewPost from '../pages/ViewPost'
 import { __CheckSession } from '../services/UserServices'
-import Layout from './Layout'
+import Layout from './Nav'
 import ProtectedRoute from './ProtectedRoute'
 
 
@@ -73,7 +72,7 @@ class Router extends Component {
               path="/"
               component={() => (
                 <LandingPage>
-                  <Home />
+                  <Feed />
                 </LandingPage>
               )}
             />
@@ -89,7 +88,7 @@ class Router extends Component {
               path="/login"
               component={(props) => (
                 <LandingPage>
-                  <SignIn
+                  <Login
                     toggleAuthenticated={this.toggleAuthenticated}
                     {...props}
                   />

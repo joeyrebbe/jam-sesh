@@ -1,52 +1,57 @@
-import React, { useState } from 'react'
-import PageHeader from '../components/Header'
-import AddPost from '../components/AddPostForm'
-import PostCard from '../components/PostCard'
-import * as commentsAPI from '../utils/commentsService'
-import * as postsAPI from '../utils/postService'
+import React from 'react'
+import Search from '../components/TextInput'
+import Card from '../components/Card'
 
-export default function Feed(post, isProfile, user, addComment, deleteComment) {
-    
-        const [posts, setPosts] = useState([])
-
-        async function handleAddPost (post) {
-            
-
-            const data = await postsAPI.create(post)
-            console.log(data.post, ' new post', data, ' data variable')
-            setPosts(posts => [data.post, ...posts])
-        }
-
-        async function addComment(postId) {
-            try {
-            const data = await commentsAPI.create(postId)
-            console.log(data, ' data from addComment')
-            // getPosts()
-        } 
-        catch (err) {
-            console.log(err)
-        }
-    }
-        async function deleteComment(postId) {
-           try {
-            const data = await commentsAPI.deleteComment(postId)
-            // getPosts()
-           }
-           catch (err) {
-            console.log(err)
-           }
-    }
-
-
-    
-    
-    
-    return (
-        <>
-        <PageHeader />
-        <AddPost handleAddPost={handleAddPost} />
-        <PostCard />
-        {/* <PostFeed posts={posts} isProfile={false} user={user} addComment={addComment} removeComment={removeComment} /> */}
-        </>
-    )
+export default function Feed() {
+  return (
+    <div className="home content-wrapper flex-col">
+      <div className="content flex-col">
+        <form>
+          <Search name="search" type="search" placeholder="Find New Places" />
+        </form>
+        <div className="discover flex-col">
+          <h2>Discover</h2>
+          <h4>Trending</h4>
+          <section className="card-wrapper flex-row">
+            <Card>
+              <div className="mask flex-col">
+                <div className="card-content">
+                  <h3>Grand Canyon</h3>
+                  <p>Waterfall in the grand canyon!</p>
+                </div>
+              </div>
+              <img
+                src="https://images.unsplash.com/photo-1502375751885-4f494926ce5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+                alt="gc"
+              />
+            </Card>
+            <Card>
+              <div className="mask flex-col">
+                <div className="card-content">
+                  <h3>San Francisco</h3>
+                  <p>Tram in Sf!</p>
+                </div>
+              </div>
+              <img
+                src="https://images.unsplash.com/photo-1534050359320-02900022671e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+                alt="sf"
+              />
+            </Card>
+            <Card>
+              <div className="mask flex-col">
+                <div className="card-content">
+                  <h3>Tokyo</h3>
+                  <p>I wear my sunglasses at night!</p>
+                </div>
+              </div>
+              <img
+                src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+                alt="sf"
+              />
+            </Card>
+          </section>
+        </div>
+      </div>
+    </div>
+  )
 }
