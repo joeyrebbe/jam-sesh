@@ -1,10 +1,19 @@
-const express = require('express')
-const router = express.Router()
-const usersCtrl = require('../controllers/UserController')
-const multer = require('multer')
+const Router = require('express').Router()
+const UserController = require('../controllers/UserController')
+const {
+  getToken,
+  createToken,
+  verifyToken
+} = require('../middleware/JwtHandler')
 
-router.post('/signup', usersCtrl.signup)
-router.post('/login', usersCtrl.login)
-router.get('/:username', usersCtrl.profile)
+Router.get('/:user_id', UserController.GetProfile)
+Router.post('/register', UserController.CreateUser)
+Router.post('/login', UserController.SignInUser, createToken)
+Router.get(
+  '/refresh/session',
+  getToken,
+  verifyToken,
+  UserController.RefreshSession
+)
 
-module.exports = router
+module.exports = Router

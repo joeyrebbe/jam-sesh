@@ -1,60 +1,69 @@
-const User = require('../db/models/User')
+const { User, TravelLog } = require('../db/schema')
 const jwt = require('jsonwebtoken')
-const SECRET = process.env.SECRET
+const {
+  checkPassword,
+  generatePassword
+} = require('../middleware/PasswordHandler')
 
-const signup = async(req, res) => {
-    const user = new User(req.body)
-    try {
-    await user.save()
-    const token = createJWT(user)
-    res.json({ token })
-    }
-    catch(err) {
-    res.status(400).json(err)
-    }
+const GetProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.user_id).select('_id name')
+    const posts = await TravelLog.find({ user_id: req.params.user_id })
+    res.send({ user, posts })
+  } catch (error) {
+    throw error
+  }
 }
 
-const login = async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.body.email })
-
-        if (!user) return res.status(401).json({err: 'bad credentials'})
-        user.comparePassword(req.body.pw, (err, isMatch) => {
-            if (isMatch) {
-                const token = createJWT(user)
-                res.json({token})
-            } else {
-                return res.status(401).json({err: 'bad credentials'})
-            }
-        })
-    } catch (err) {
-        return res.status(401).json(err)
-    }
+const CreateUser = async (req, res) => {
+  try {
+    const body = req.body
+    const password_digest = await generatePassword(body.password)
+    const user = new User({
+      name: body.name,
+      email: body.email,
+      password_digest
+    })
+    user.save()
+    res.send(user)
+  } catch (error) {
+    throw error
+  }
 }
 
-const profile = async (req, res) => {
-    try {
-        const user = await User.findOne({username: req.params.username})
-        const posts = await Post.find({user: user._id})
-        console.log(posts, ' this post')
-        res.status(200).json({posts: posts, user: user})
+const SignInUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email })
+
+    if (
+      user &&
+      (await checkPassword(req.body.password, user.password_digest))
+    ) {
+      const payload = {
+        _id: user._id,
+        name: user.name
+      }
+      res.locals.payload = payload
+      return next()
     }
-    catch (err) {
-        console.log(err)
-        res.send({err})
-    }
+    res.status(401).send({ msg: 'Unauthorized' })
+  } catch (error) {
+    throw error
+  }
 }
 
-const createJWT = (user) => {
-    return jwt.sign(
-        {user},
-        SECRET,
-        {expiresIn: '24h'}
-    )
+const RefreshSession = (req, res) => {
+  try {
+    const token = res.locals.token
+    res.send({ user: jwt.decode(token), token: res.locals.token })
+  } catch (error) {
+    throw error
+  }
 }
 
 module.exports = {
-    signup,
-    login, 
-    profile
+  GetProfile,
+  CreateUser,
+  SignInUser,
+  RefreshSession
 }

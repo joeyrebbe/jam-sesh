@@ -1,8 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/Nav.css'
-
-export default function Nav ({ authenticated, currentUser, className }) {
+export default ({ authenticated, currentUser, className }) => {
   return authenticated && currentUser ? (
     <header className={className}>
       <div className="icon">Welcome Back {currentUser.name}</div>
@@ -42,4 +41,3 @@ export default function Nav ({ authenticated, currentUser, className }) {
     </header>
   )
 }
-

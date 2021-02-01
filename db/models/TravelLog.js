@@ -6,8 +6,17 @@ module.exports = new Schema(
       type: String,
       required: true
     },
+    popularity_rating: {
+      type: Number,
+      default: 0,
+      required: true
+    },
     description: {
       type: String
+    },
+    image_url: {
+      type: String,
+      required: true
     },
     location: {
       type: String

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import CreatePost from '../pages/CreatePost'
-import Feed from '../pages/Feed'
+import Discover from '../pages/Discover'
+import Home from '../pages/Home'
 import LandingPage from '../pages/LandingPage'
 import Profile from '../pages/Profile'
-import Login from '../pages/Login'
+import SignIn from '../pages/SignIn'
 import Signup from '../pages/Signup'
 import UpdatePost from '../pages/UpdatePost'
 import ViewPost from '../pages/ViewPost'
 import { __CheckSession } from '../services/UserServices'
-import Layout from './Nav'
+import Layout from './Layout'
 import ProtectedRoute from './ProtectedRoute'
 
 
@@ -72,7 +73,7 @@ class Router extends Component {
               path="/"
               component={() => (
                 <LandingPage>
-                  <Feed />
+                  <Home />
                 </LandingPage>
               )}
             />
@@ -88,7 +89,7 @@ class Router extends Component {
               path="/login"
               component={(props) => (
                 <LandingPage>
-                  <Login
+                  <SignIn
                     toggleAuthenticated={this.toggleAuthenticated}
                     {...props}
                   />
@@ -96,13 +97,13 @@ class Router extends Component {
               )}
             />
             <Route
-              path="/feed"
+              path="/discover"
               component={(props) => (
                 <Layout
                   currentUser={this.state.currentUser}
                   authenticated={this.state.authenticated}
                 >
-                  <Feed {...props} />
+                  <Discover {...props} />
                 </Layout>
               )}
             />
@@ -161,4 +162,3 @@ class Router extends Component {
 }
 
 export default withRouter(Router)
-

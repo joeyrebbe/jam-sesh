@@ -1,62 +1,82 @@
-const Post = require('../db/models/Post')
-const Comment = require('../db/models/Comment')
+const { TravelLog, User, Comment } = require('../db/schema')
 
-const CreatePost = async (req, res) => {
-    try {
-
-        const post = await Post.create({caption: req.body.caption, user: req.user});
-
-        console.log(post)
-        res.status(201).json({post: post})
-    }
-        
-    catch(err) {
-        console.log(err)
-        res.json({data: err})
-    }
-}
-
-const GetAllPosts = async (req, res) => {
-    try {
-        const posts = await Post.find()
-        res.send(posts)
-    }
-    catch (err) {
-        throw err
-    }
+const GetPosts = async (req, res) => {
+  try {
+    const { page, limit } = req.query
+    const offset =
+      page === '1' ? 0 : Math.floor(parseInt(page) * parseInt(limit))
+    const posts = await TravelLog.find()
+      .limit(parseInt(limit))
+      .skip(offset)
+      .sort({ popularity_rating: 'desc' })
+    res.send(posts)
+  } catch (error) {
+    throw error
+  }
 }
 
 const GetPostById = async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.post_id).populate([{model: Comment, path: 'comments', select: '_id description'}])
-        // if using actual model doesnt work, use 'comments' for model
-        res.send(post)
-    }
-    catch (err) {
-        throw err
-    }
+  try {
+    const post = await TravelLog.findById(req.params.post_id).populate([
+      {
+        model: 'users',
+        path: 'user_id',
+        select: '_id name'
+      },
+      {
+        path: 'comments',
+        populate: {
+          path: 'user_id',
+          model: 'users',
+          select: '_id name'
+        }
+      }
+    ])
+    res.send(post)
+  } catch (error) {
+    throw error
+  }
+}
+
+const CreatePost = async (req, res) => {
+  try {
+    const newPost = new TravelLog({ ...req.body, user_id: req.params.user_id })
+    newPost.save()
+    res.send(newPost)
+  } catch (error) {
+    throw error
+  }
 }
 
 const DeletePost = async (req, res) => {
-    try {
-        await Comment.deleteMany({_id: {$in: post.comments}})
-        await Post.findByIdAndDelete(req.params.post_id)
-        res.send({msg: 'your post has been banished to the shadow realm'})
-    }
-    catch (err) {
-        throw err
-    }
+  try {
+    await Comment.deleteMany({ _id: { $in: post.comments } })
+    await TravelLog.findByIdAndDelete(req.params.post_id)
+    res.send({ msg: 'Post deleted' })
+  } catch (error) {
+    throw error
+  }
 }
 
-
-
-
-
-
+const UpdatePost = async (req, res) => {
+  try {
+    await TravelLog.findByIdAndUpdate(
+      req.params.post_id,
+      {
+        ...req.body
+      },
+      { new: true, useFindAndModify: false },
+      (err, (d) => (err ? err : res.send(d)))
+    )
+  } catch (error) {
+    throw error
+  }
+}
 
 module.exports = {
-    CreatePost,
-    GetAllPosts,
-    GetPostById,
-    DeletePost
+  GetPosts,
+  GetPostById,
+  CreatePost,
+  DeletePost,
+  UpdatePost
 }
