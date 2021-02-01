@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default (props) =>
-  props.fieldType === 'textfield' ? (
+export default function TextInput (props) {
+  return props.fieldType === 'textfield' ? (
     <textarea
       type={props.type}
       name={props.name}
@@ -19,3 +19,4 @@ export default (props) =>
       autoComplete="false"
     />
   )
+}

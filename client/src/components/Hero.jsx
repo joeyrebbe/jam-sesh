@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default () => {
+export default function Hero () {
   return (
     <div className="hero flex-col">
       <div className="hero-message">

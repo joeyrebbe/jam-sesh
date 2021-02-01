@@ -5,7 +5,7 @@ import Hero from '../components/Hero'
 import '../styles/Landing.css'
 import Nav from '../components/Nav'
 
-export default ({ children }) => {
+export default function LandingPage ({ children }) {
   return (
     <div className="landing-page flex-row">
       <section className="left flex-sm flex-col">

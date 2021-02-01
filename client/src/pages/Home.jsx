@@ -2,7 +2,7 @@ import React from 'react'
 import Search from '../components/TextInput'
 import Card from '../components/Card'
 
-export default () => {
+export default function Home() {
   return (
     <div className="home content-wrapper flex-col">
       <div className="content flex-col">

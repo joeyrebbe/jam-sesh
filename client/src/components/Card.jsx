@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ children, ...rest }) => {
+export default function Card ({ children, ...rest }) {
   return (
     <div className="card" {...rest}>
       {children}
