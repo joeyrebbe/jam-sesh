@@ -1,7 +1,9 @@
 import React from 'react'
 import Nav from './Nav'
 
-export default function Layout ({ children, authenticated, currentUser }) {(
+export default function Layout({ children, authenticated, currentUser }) {
+  
+  return (
   <div>
     <Nav
       authenticated={authenticated}
@@ -10,4 +12,6 @@ export default function Layout ({ children, authenticated, currentUser }) {(
     />
     {children}
   </div>
-)}
+)
+}
+

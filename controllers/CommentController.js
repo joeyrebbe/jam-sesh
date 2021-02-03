@@ -1,10 +1,10 @@
-const { TravelLog, Comment } = require('../db/schema')
+const { Post, Comment } = require('../db/schema')
 
 const CreateComment = async (req, res) => {
   try {
     const comment = new Comment({ ...req.body, user_id: req.params.user_id })
     comment.save()
-    await TravelLog.update(
+    await Post.update(
       { _id: req.params.post_id },
       {
         $push: {
@@ -21,7 +21,7 @@ const CreateComment = async (req, res) => {
 const RemoveComment = async (req, res) => {
   try {
     await Comment.deleteOne({ _id: req.params.comment_id })
-    const updatedPost = await TravelLog.findByIdAndUpdate(
+    const updatedPost = await Post.findByIdAndUpdate(
       req.params.post_id,
       { $pull: { comments: { _id: req.params.comment_id } } },
       { upsert: true, new: true }

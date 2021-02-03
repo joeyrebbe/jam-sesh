@@ -6,7 +6,7 @@ const CommentSchema = require('./models/Comments')
 
 const User = model('users', UserSchema)
 const Comment = model('comments', CommentSchema)
-const Post = model('travel_logs', PostSchema)
+const Post = model('posts', PostSchema)
 
 module.exports = {
   User,

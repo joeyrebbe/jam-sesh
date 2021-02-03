@@ -1,7 +1,7 @@
 const faker = require('faker')
 const connection = require('./connection')
 const { Types } = require('mongoose')
-const { User, TravelLog, Comment } = require('./schema')
+const { User, Post, Comment } = require('./schema')
 
 const users = new Array(50).fill().map(() => ({
   _id: Types.ObjectId(),
@@ -33,7 +33,7 @@ const posts = new Array(100).fill().map(() => ({
 const seed = async () => {
   await connection.connect
   await User.insertMany(users)
-  await TravelLog.insertMany(posts)
+  await Post.insertMany(posts)
   await Comment.insertMany(comments)
   await connection.disconnect
   process.exit()
