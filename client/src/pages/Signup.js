@@ -3,7 +3,7 @@ import TextInput from '../components/TextInput'
 import { __RegisterUser } from '../services/UserServices'
 import '../styles/Signup.css'
 export default class Signup extends Component {
-  // TODO Integrate Auth
+
   constructor() {
     super()
     this.state = {

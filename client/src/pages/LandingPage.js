@@ -1,6 +1,6 @@
 import React from 'react'
-import TravelImg from '../assets/travel.png'
-import TravelPath from '../assets/path.svg'
+import GuitarlImg from '../assets/guitar.png'
+import GuitarlPath from '../assets/path.svg'
 import Hero from '../components/Hero'
 import '../styles/Landing.css'
 import Nav from '../components/Nav'
@@ -18,14 +18,14 @@ export default function LandingPage ({ children }) {
               </div>
               <div className="cl-right flex-col">
                 <div className="path-wrapper">
-                  <img src={TravelPath} alt="path" />
+                  <img src={GuitarlPath} alt="path" />
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="img-wrapper">
-          <img src={TravelImg} alt="water" />
+          <img src={GuitarlImg} alt="water" />
         </div>
       </section>
       <section className="right flex-sm">

@@ -44,7 +44,7 @@
   textarea:active,
   textarea:focus {
     outline: none;
-    border-color: #ff7043;
+    border-color: #a33131;
   }
   
   input::placeholder,
@@ -60,7 +60,7 @@
   }
   
   button {
-    background-color: #ff7043;
+    background-color: #a33131;
     padding: 0.4em 2em;
     border-radius: 0.5em;
     color: #eee;
