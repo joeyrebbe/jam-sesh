@@ -1,10 +1,10 @@
-const router = require('express').Router()
-const postsCtrl = require('../controllers/PostController')
+const Router = require('express').Router()
+const PostController = require('../controllers/PostController')
 
-router.get('/posts', postsCtrl.GetAllPosts)
-router.get('/posts/:post_id', postsCtrl.GetPostById)
-router.post('/posts', postsCtrl.CreatePost)
-router.delete('/posts/:post_id', postsCtrl.DeletePost)
+Router.get('/', PostController.GetPosts)
+Router.get('/:post_id', PostController.GetPostById)
+Router.post('/:user_id', PostController.CreatePost)
+Router.put('/:post_id', PostController.UpdatePost)
+Router.delete('/:post_id', PostController.DeletePost)
 
-
-module.exports = router
+module.exports = Router

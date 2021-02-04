@@ -17,9 +17,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'client', 'build')))
-
-// routing 
-
+// Initialize Middleware
 app.disable('X-Powered-By')
 app.use('/api', AppRouter)
 
