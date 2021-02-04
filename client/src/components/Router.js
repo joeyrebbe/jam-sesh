@@ -13,12 +13,6 @@ import { __CheckSession } from '../services/UserServices'
 import Layout from './Layout'
 import ProtectedRoute from './ProtectedRoute'
 
-
-// class Router extends Component === const Router = (props) => {}
-// constructor(super, this.state) === nothing but useState variables
-// instead of componentDidMount === useEffect(() => {code})
-// in hooks, functions need to be delcared => const verifyTokenValid = async () =>
-// render () { return} === return ()
 class Router extends Component {
   constructor() {
     super()
