@@ -1,5 +1,7 @@
+
 .discover.wrapper {
     margin: 1em auto;
+    min-height: 100vh;
 }
 
 .discover.wrapper h2 {
@@ -29,6 +31,8 @@
     flex-direction: column-reverse;
     justify-content: space-between;
     height: 100%;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 

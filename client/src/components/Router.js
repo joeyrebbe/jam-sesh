@@ -67,6 +67,10 @@ class Router extends Component {
         {this.state.pageLoading ? (
           <h3>Loading...</h3>
         ) : (
+          <Layout
+          currentUser={this.state.currentUser}
+          authenticated={this.state.authenticated}
+        >
           <Switch>
             <Route
               exact
@@ -99,62 +103,43 @@ class Router extends Component {
             <Route
               path="/discover"
               component={(props) => (
-                <Layout
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
+                
                   <Discover {...props} />
-                </Layout>
               )}
             />
             <Route
               path="/posts/:post_id"
               component={(props) => (
-                <Layout
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
+                
                   <ViewPost {...props} />
-                </Layout>
               )}
             />
             <ProtectedRoute
               authenticated={this.state.authenticated}
               path="/profile"
               component={(props) => (
-                <Layout
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
+                
                   <Profile {...props} currentUser={this.state.currentUser} />
-                </Layout>
               )}
             />
             <ProtectedRoute
               authenticated={this.state.authenticated}
               path="/upload"
               component={(props) => (
-                <Layout
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
+                
                   <CreatePost {...props} currentUser={this.state.currentUser} />
-                </Layout>
               )}
             />
             <ProtectedRoute
               authenticated={this.state.authenticated}
               path="/edit/:post_id"
               component={(props) => (
-                <Layout
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
+                
                   <UpdatePost {...props} currentUser={this.state.currentUser} />
-                </Layout>
               )}
             />
           </Switch>
+        </Layout>
         )}
       </main>
     )

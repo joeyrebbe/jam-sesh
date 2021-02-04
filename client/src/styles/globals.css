@@ -1,6 +1,8 @@
 .flex-row {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
   }
   
   .flex-col {
@@ -87,6 +89,11 @@
   .header-elevated .icon {
     margin-left: 1em;
     flex: 3;
+  }
+
+  .profile {
+    padding: 20px;
+    min-height: 100vh;
   }
   
   .card {

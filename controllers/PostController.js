@@ -50,6 +50,7 @@ const CreatePost = async (req, res) => {
 
 const DeletePost = async (req, res) => {
   try {
+    const post = Post.findById(req.params.post_id)
     await Comment.deleteMany({ _id: { $in: post.comments } })
     await Post.findByIdAndDelete(req.params.post_id)
     res.send({ msg: 'Post deleted' })

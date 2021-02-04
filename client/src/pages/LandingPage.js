@@ -1,35 +1,21 @@
 import React from 'react'
 import GuitarImg from '../assets/guitar.png'
-import GuitarPath from '../assets/path.svg'
 import Hero from '../components/Hero'
-import '../styles/Landing.css'
 import Nav from '../components/Nav'
 
 export default function LandingPage ({ children }) {
   return (
-    <div className="landing-page flex-row">
-      <section className="left flex-sm flex-col">
-        <div className="mask flex-col">
-          <div className="content-wrapper flex-col">
-            <div className="hero-wrapper flex-row">
-              <div className="cl-left flex-col">
-                <Hero />
-              </div>
-              <div className="cl-right flex-col">
-                <div className="path-wrapper">
-                  <img src={GuitarPath} alt="path" />
-                </div>
-              </div>
-            </div>
-          </div>
+    <div style={{background: "linear-gradient(black, white)", color: "white"}}>
+      <section style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", marginBottom: "20vh"}}>
+        <div style={{margin: "0 auto", width: "600px"}}>
+          <Hero />
+          {children}
         </div>
-        <div className="img-wrapper">
-          <img src={GuitarImg} />
+        <div style={{width: "600px", margin: "0 auto"}}>
+          <img src="http://freepngimages.com/wp-content/uploads/2016/11/dean-sunburst-guitar.png" alt="guitar" 
+            style={{width: "100%", margin: "20vh auto"}}
+          />
         </div>
-      </section>
-      <section className="right flex-sm">
-        <Nav />
-        {children}
       </section>
     </div>
   )
