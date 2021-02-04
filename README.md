@@ -1,8 +1,13 @@
 # jam-sesh!
 
-# Screenshots
 
-# Technologies Used
+
+
+## Screenshots
+
+coming soon 
+
+## Technologies Used
 
 - React
 - Node.js
@@ -11,7 +16,7 @@
 - HTML
 - CSS
 
-# Getting Started
+## Getting Started
 
 - To get started, sign up for the app by listing your name, email, and password. 
 
@@ -21,10 +26,10 @@
 
 - If you need to edit or delete a post, there are helpful boxes below each post that allow you to do so. 
 
-# Project Planning
+## Project Planning
 
 Trello board: https://trello.com/b/YH6ZeS7q/datasecure-messenger
 
-# Next Steps
+## Next Steps
 
 Next up for this project is implementing a search feature that allows you to filter results by your zip code, enabling you to hone down all results to your area. 
