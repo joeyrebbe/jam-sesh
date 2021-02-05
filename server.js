@@ -23,7 +23,7 @@ app.disable('X-Powered-By')
 app.use('/api', AppRouter)
 
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  res.sendFile(path.join(__dirname, 'client', 'build', 'public/index.html'))
 )
 
 app.listen(PORT, async () => {
