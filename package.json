@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "db:seed": "node ./db/seed.js",
-    "build": "cd client && rm -rf build && npm install && npm run build"
+    "build": "cd client && rm -rf build && npm install && CI='' npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
